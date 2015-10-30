@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Contains amazing_pager.module
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+
+function amazing_pager_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the amazing_pager module.
+    case 'help.page.amazing_pager':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module to use infinite scroll') . '</p>';
+      return $output;
+    break;
+  }
+}
+
+/**
+ *  Implements hook_preprocess().
+ */
+function amazing_pager_preprocess_amazing_pager(&$variables, $hook) {
+  $type = $variables['options']['options']['type'];
+
+  if($type == 'manual_load' OR $type == 'click_scroll') {
+    $variables['trigger'] = array(
+      '#theme' => 'amazing_pager_trigger'
+    );
+  }
+
+  $variables['loader'] = array(
+    '#theme' => 'amazing_pager_loader'
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+
+function amazing_pager_theme() {
+  $theme = [];
+
+  $theme['amazing_pager'] = array(
+    'variables' => array(),
+    'template' => 'amazing_pager',
+  );
+
+  $theme['amazing_pager_trigger'] = array(
+    'variables' => array(),
+    'template' => 'amazing-pager-trigger',
+  );
+
+  $theme['amazing_pager_loader'] = array(
+    'variables' => array(),
+    'template' => 'amazing-pager-trigger',
+  );
+
+  return $theme;
+}

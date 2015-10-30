@@ -1,0 +1,8 @@
+amazing_pager.default_controller_hello:
+  path: 'amazing_pager/items/{name}'
+  defaults:
+    _controller: '\Drupal\amazing_pager\Controller\DefaultController::items'
+    _title: 'amazing_pager Title'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,9 @@
+amazing-pager:
+  version: VERSION
+  js:
+    js/amazing-pager.js : {}
+  css:
+    theme:
+      css/amazing-pager.css: {}
+  dependencies:
+    - core/jquery

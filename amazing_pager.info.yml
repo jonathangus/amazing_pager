@@ -1,0 +1,5 @@
+name: Amazing pager
+type: module
+description: A pager with that loads more items through ajax.
+core: 8.x
+package: views
