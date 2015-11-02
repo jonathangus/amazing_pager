@@ -1,14 +1,4 @@
 {% if options.total_result >= options.items_per_page %}
-  <div>
-    {{ trigger }}
-    {{ loader }}
-  </div>
+  {{ trigger }}
+  {{ loader }}
 {% endif %}
-
-  <div class="js-AmazingPager-spinner AmazingPager-spinner AmazingPager-spinner--active">
-    <div class="AmazingPager-spinner-inner">
-      <div class="AmazingPager-dot1"></div>
-      <div class="AmazingPager-dot2"></div>
-    </div>
-  </div>
-

@@ -1,3 +1,11 @@
+article {
+  padding: 50px 0;
+}
+
+article:nth-child(even){
+  background: #DDD;
+}
+
 .AmazingPager {
 
 }
@@ -13,61 +21,6 @@
   margin: 0 20px;
   color:#fafafa;
 }
-
-.AmazingPager-spinner {
-  width: 40px;
-  height: 40px;
-  display: none;
-  margin:20px auto;
-}
-
-.AmazingPager-spinner-inner{
-  -webkit-animation: rotate 2.0s infinite linear;
-  animation: rotate 2.0s infinite linear;
-  position: relative;
-  text-align: center;
-  height:100%;
-}
-
-.AmazingPager-dot1,
-.AmazingPager-dot2 {
-  width: 60%;
-  height: 60%;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  background-color: #222;
-  border-radius: 100%;
-
-  -webkit-animation: bounce_spinner 2.0s infinite ease-in-out;
-  animation: bounce_spinner 2.0s infinite ease-in-out;
-}
-
-.AmazingPager-dot2 {
-  top: auto;
-  bottom: 0px;
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
-@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
-
-@-webkit-keyframes bounce_spinner {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes bounce_spinner {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-    }
-}
-
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;

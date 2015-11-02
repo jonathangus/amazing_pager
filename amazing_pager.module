@@ -31,7 +31,9 @@ function amazing_pager_preprocess_amazing_pager(&$variables, $hook) {
 
   if($type == 'manual_load' OR $type == 'click_scroll') {
     $variables['trigger'] = array(
-      '#theme' => 'amazing_pager_trigger'
+      '#theme' => 'amazing_pager_trigger',
+      '#loading_text' =>  $variables['options']['options']['loading_text'],
+      '#load_more_text' =>  $variables['options']['options']['load_more_text'],
     );
   }
 
@@ -53,13 +55,16 @@ function amazing_pager_theme() {
   );
 
   $theme['amazing_pager_trigger'] = array(
-    'variables' => array(),
+    'variables' => array(
+      'loading_text' => NULL,
+      'load_more_text' => NULL,
+    ),
     'template' => 'amazing-pager-trigger',
   );
 
   $theme['amazing_pager_loader'] = array(
     'variables' => array(),
-    'template' => 'amazing-pager-trigger',
+    'template' => 'amazing-pager-loader',
   );
 
   return $theme;

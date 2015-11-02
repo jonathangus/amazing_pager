@@ -103,15 +103,14 @@ class AmazingPager extends SqlBase {
       '#default_value' => $this->options['options']['loading_text'],
     );
 
-    $form['options']['manual_load_text'] = array(
+    $form['options']['load_more_text'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Click to Load Button'),
       '#description' => $this->t('The text inside the manually load button.'),
-      '#default_value' => $this->options['vis']['manual_load_text'],
+      '#default_value' => $this->options['options']['load_more_text'],
       '#states' => array(
-        'visible' => array(
-          ':input[name="pager_options[options][type]"]' => array('value' => 'manual_load'),
-          ':input[name="pager_options[options][type]"]' => array('value' => 'click_scroll'),
+        'invisible' => array(
+          ':input[name="pager_options[options][type]"]' => array('value' => 'infinite_scroll'),
         ),
       ),
     );
@@ -123,13 +122,6 @@ class AmazingPager extends SqlBase {
       '#tree' => TRUE,
       '#input' => TRUE,
       '#weight' => -100,
-    );
-
-    $form['element_settings']['container_class'] = array(
-      '#type' => 'textfield',
-      '#title' => $this->t('Container class'),
-      '#description' => $this->t('Change the container class from the default one (views-container).'),
-      '#default_value' => $this->options['element_settings']['container_class'],
     );
 
     $form['element_settings']['row_class'] = array(
@@ -202,7 +194,6 @@ class AmazingPager extends SqlBase {
   public function render($input) {
     $options = $this->options;
     $options['total_result'] = count($this->view->result);
-
     return array(
       '#theme' => $this->themeFunctions(),
       '#options' => $options,
@@ -230,29 +221,20 @@ class AmazingPager extends SqlBase {
       'name' => $this->view->storage->id(),
       'args' => $this->view->args,
     );
+    $view_settings['settings'] = array_filter($this->options['element_settings']);
 
-    if(isset($this->options['element_settings']['row_class'])) {
-      $view_settings['settings']['row'] = $this->options['element_settings']['row_class'];
-    }
-    if(isset($this->options['element_settings']['container_class'])) {
-      $view_settings['settings']['container'] = $this->options['element_settings']['container_class'];
-    }
-    if(isset($this->options['element_settings']['trigger_class'])) {
-      $view_settings['settings']['trigger'] = $this->options['element_settings']['trigger_class'];
-    }
-    if(isset($this->options['element_settings']['loader_class'])) {
-      $view_settings['settings']['loader'] = $this->options['element_settings']['loader_class'];
-    }
     $view_settings['options'] = array(
       'type' => $this->options['options']['type'],
-      'manualText' => $this->options['vis']['manual_load_text'],
+      'manualText' => $this->options['vis']['load_more_text'],
       'loadText' => $this->options['vis']['loading_text'],
     );
 
-    $view_settings['animate'] = array(
-      'animate' => $this->options['output']['animate'],
-      'animateEffect' => $this->options['output']['animate_effect'],
-    );
+    $animate = $this->options['output']['animate'];
+    if($animate) {
+      $view_settings['animate'] = array(
+        'animateEffect' => $this->options['output']['animate_effect'],
+      );
+    }
 
     return $view_settings;
   }

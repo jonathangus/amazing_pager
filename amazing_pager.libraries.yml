@@ -5,5 +5,7 @@ amazing-pager:
   css:
     theme:
       css/amazing-pager.css: {}
+      css/amazing-pager-spinner.css: {}
+      css/AmazingTrigger.css: {}
   dependencies:
     - core/jquery
